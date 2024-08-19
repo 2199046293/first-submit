@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>爆炸特效（Explode Effect）演示</title>
+  <link rel="stylesheet" href="../Jquery ui/node_modules/jquery-ui/dist/themes/base/jquery-ui.min.css">
+  <style>
+  #toggle {
+    width: 100px;
+    height: 100px;
+    background: #ccc; 
+  }
+  </style>
+  <script src="../Jquery ui/node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="../Jquery ui/node_modules/jquery-ui/dist/jquery-ui.min.js"></script>
+</head>
+<body>
+ 
+<p>点击任意地方进行切换。</p>
+<div id="toggle"></div>
+ 
+<script>
+$( document ).click(function() {
+  $( "#toggle" ).toggle( "explode" );
+});
+</script>
+ 
+</body>
+</html>

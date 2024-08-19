@@ -1,0 +1,129 @@
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box" style="display: flex;width: 100vw;height: 100vh;border: 1px solid black;justify-content: center;align-items: center;flex-wrap: wrap;"></div>
+    <!-- <div class="ball" style="border-radius: 50%;"></div> -->
+    <script>
+        // 实现功能3，当篮子里面的小球都没了，跳出来到关卡2
+// 实现功能4，当小槽里面没有空位了，跳出游戏结束，跳出得分，每一个关卡20分
+// 20分到60显示，你真菜，来个笑的音频
+// 60分以上，显示继续加油，来个笑的音频
+// 分数达到100分，显示，你真是天才选手，来个观众鼓掌的音效
+
+
+//这是关卡2的函数
+// for(let i=0;i<50;i++){
+//    let div= document.createElement('div');
+//    let ball= document.querySelector('.box').appendChild(div)
+//    document.body.style.display='flex';
+//    ball.style.width = '50px';
+//    ball.style.height = '50px';
+//    ball.style.borderRadius = '50%';
+//    ball.classList.add('ball');
+// }
+
+
+// function generateBalls() {
+//     // 定义颜色
+//     const colors = ['red', 'green', 'blue'];
+//     // 初始化一个数组来保存小球
+//     let balls = [];
+
+//     // 循环为每种颜色添加小球
+//     for (let color of colors) {
+//         // 计算每种颜色需要多少个小球
+//         let count = Math.floor((50 / colors.length) / 3) * 3;
+//         // 将小球添加到数组中
+//         for (let i = 0; i < count; i++) {
+//             balls.push({ color: color });
+//         }
+//     }
+
+//     // 返回小球数组
+//     return balls;
+// }
+
+// // 生成小球
+// let ballArray = generateBalls();
+// ballArray.sort(function() {
+//     return Math.random() - 0.5;
+// });
+
+// // 打印结果
+// console.log(ballArray);
+
+    // </script>
+<!-- // </body> -->
+<!-- // </html>  -->
+
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐏了个🐏简易版</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="../Jquery ui/node_modules/jquery-ui/dist/themes/base/jquery-ui.min.css">
+    <script src="../Jquery ui/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../Jquery ui/node_modules/jquery-ui/dist/jquery-ui.min.js"></script>
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <div class="pause-button">⏸</div>
+            <div class="score"></div>
+        </div>
+<!-- 这是一个遮罩层，用来显示广告 -->
+        <div class="overlay" id="overlay">
+            <div class="ad">
+              <span class="close-ad">&times;</span>
+              <p>观看广告 30 秒后才能移除。</p>
+              <p id="timer">30</p>
+            </div>
+          </div>
+          <!-- 这是一个游戏主体，用来存贮篮子和小球 -->
+        <div class="game-body">
+            <div class="pot">
+                <!-- <img src="./盒子.png" alt="篮子" class="basket" id="basket" style="width: 100%; "> -->
+                 <div class="basket" id="basket"> 
+                 </div>
+                 <div id="next-level">进入下一关 你的分数:40</div>
+                    <div class="items">
+                        <!-- <img src="assets/item1.png" alt="物品1" class="item"> -->
+                        <!-- <img src="assets/item1.png" alt="物品1" class="item">  -->
+                    </div>
+            </div>
+            
+        </div>
+        <!-- 这是小槽 -->
+        <div class="slot-container">
+            <div class="slot"></div>
+            <div class="slot"></div>
+            <div class="slot"></div>
+            <div class="slot"></div>
+            <div class="slot"></div>
+            <div class="slot"></div>
+        </div>
+        <!-- 底部按钮 -->
+        <div class="game-footer">
+            <div class="button remove-action">移出</div>
+            <div class="button action">悬浮</div>
+            <div class="button daluan-action">打乱</div>
+        </div>
+    </div>
+    
+    <script src="./script.js"></script>
+    
+   
+</body>
+</html>
+
+
+

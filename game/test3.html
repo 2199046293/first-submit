@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ad Removal Example</title>
+<style>
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .ad {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+  }
+
+  .close-ad {
+    cursor: pointer;
+    color: red;
+  }
+</style>
+</head>
+<body>
+<button id="removeButton">移除</button>
+
+<div class="overlay" id="overlay">
+  <div class="ad">
+    <span class="close-ad">&times;</span>
+    <p>观看广告 30 秒后才能移除。</p>
+    <p id="timer">30</p>
+  </div>
+</div>
+
+<script>
+  let hasClickedOnce = false;
+  let adPlaying = false;
+
+  document.getElementById('removeButton').addEventListener('click', function() {
+    if (!hasClickedOnce) {
+      // 第一次点击，直接允许移除
+      hasClickedOnce = true;
+      console.log('可以直接移除');
+    } else if (!adPlaying) {
+      // 第二次点击，显示提示框
+      const shouldContinue = confirm('请观看30秒广告后才能继续移除');
+      
+      if (shouldContinue) {
+        showAd();
+      }
+    }
+  });
+
+  function showAd() {
+    adPlaying = true;
+    const overlay = document.getElementById('overlay');
+    overlay.style.display = 'flex';
+
+    const timerElement = document.getElementById('timer');
+    let timeLeft = 5;
+
+    const intervalId = setInterval(() => {
+      if (timeLeft === 0) {
+        clearInterval(intervalId);
+        adPlaying = false;
+        overlay.style.display = 'none';
+        console.log('可以再次移除');
+      } else {
+        timerElement.textContent = timeLeft--;
+      }
+    }, 1000);
+
+    document.querySelector('.close-ad').addEventListener('click', () => {
+      if (timeLeft > 0) {
+        alert('请等待广告结束');
+      } else {
+        clearInterval(intervalId);
+        overlay.style.display = 'none';
+      }
+    });
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>  
+<html lang="zh">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>打开的纸箱子</title>  
+    <style>  
+        body {  
+            display: flex;  
+            justify-content: center;  
+            align-items: center;  
+            height: 100vh;  
+            background-color: #f0f0f0;  
+            margin: 0;  
+        }  
+
+        .box {  
+            position: relative;  
+            width: 200px;  
+            height: 200px;  
+            transform-style: preserve-3d;  
+            transform: rotateX(90deg); /* 俯视角度 */  
+        }  
+
+        .face {  
+            position: absolute;  
+            width: 200px;  
+            height: 200px;  
+            background: #d9cba7; /* 纸箱颜色 */  
+            border: 1px solid #a89f8d; /* 边框 */  
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);  
+        }  
+
+        .face1 { transform: translateZ(100px); } /* 底面 */  
+        .face2 { transform: rotateY(90deg) translateZ(100px); } /* 右面 */  
+        .face3 { transform: rotateY(180deg) translateZ(100px); } /* 背面 */  
+        .face4 { transform: rotateY(-90deg) translateZ(100px); } /* 左面 */  
+        .face5 { transform: rotateX(-90deg) translateZ(100px); } /* 顶面 */  
+        .face6 { transform: rotateX(90deg) translateZ(100px); }  /* 底面（不可见） */  
+    </style>  
+</head>  
+<body>  
+    <div class="box">  
+        <div class="face face1">底面</div>  
+        <div class="face face2">右面</div>  
+        <div class="face face3">背面</div>  
+        <div class="face face4">左面</div>  
+        <div class="face face5">顶部（打开）</div>  
+        <div class="face face6">底面（不可见）</div>  
+    </div>  
+</body>  
+</html>
