@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h2>标题: {{ 3 + 2 - 5 }}</h2>
+    <h2>标题: {{ message }}</h2>
+    <div>文本: {{ html }}</div>
+  </div>
+
+  <script src="./lib/vue.global.js"></script>
+  <script>
+    // 创建应用实例
+    const app = Vue.createApp({
+      // 设置 data() 方法(函数) 来配置 View 中使用到的数据
+      // 相当于关联 Model
+      data() {
+        return {
+          message: 'Hello Vue3.x',
+          html: '<input type="text" placeholder="请输入内容" />'
+        }
+      }
+    })
+    app.mount('#app') // 相当于关联视图 View
+  </script>
+</body>
+</html>

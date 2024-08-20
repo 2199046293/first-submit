@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <div>兴趣爱好:</div>
+    <ul>
+      <!-- 对数组进行循环遍历迭代 -->
+      <li v-for="(hobby, index) of hobbies">{{hobby}} -- 下标: {{ index }}</li>
+    </ul>
+
+    <div>学生信息:</div>
+    <ul>
+      <li v-for="(val, key) of stu">{{ val }} -- 属性名: {{ key }}</li>
+    </ul>
+
+    <div>固定:</div>
+    <ul>
+      <li v-for="n of 5">固定第{{ n }}次</li>
+    </ul>
+  </div>
+
+  <script src="./lib/vue.global.js"></script>
+  <script>
+    Vue.createApp({
+      data() {
+        return {
+          hobbies: ['吃饭', '睡觉', '打豆豆'],
+          stu: { name: '张三', age: 18, sex: '男', address: '北京' },
+        }
+      },
+    }).mount('#app')
+  </script>
+</body>
+</html>

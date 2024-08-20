@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>购物车</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    ul {
+      list-style: none;
+      display: flex;
+    }
+    li {
+      width: 100px;
+      height: 40px;
+      line-height: 40px;
+      border: 1px solid #000;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h2>购物车</h2>
+    <ul>
+      <li>编号</li>
+      <li>标题</li>
+      <li>价格</li>
+      <li>数量</li>
+      <li>小计</li>
+      <li>操作</li>
+    </ul>
+    <ul v-for="goods in cart">
+      <li>{{goods.id}}</li>
+      <li>{{goods.title}}</li>
+      <li>{{goods.price}}</li>
+      <li><button>-</button>{{goods.amount}}<button>+</button></li>
+      <li>{{ goods.price * goods.amount }}</li>
+      <li><button v-on:click="removeFromCart(goods.id)">删除</button></li>
+    </ul>
+    <div>
+      合计: {{ cart.reduce((res, curr) => (res + curr.price * curr.amount), 0).toFixed(2) }}
+    </div>
+
+    <hr>
+    <h2>推荐商品</h2>
+    <ul>
+      <li>编号</li>
+      <li>标题</li>
+      <li>价格</li>
+      <li>操作</li>
+    </ul>
+    <ul v-for="prod in recommends">
+      <li>{{ prod.id }}</li>
+      <li>{{ prod.title }}</li>
+      <li>{{ prod.price }}</li>
+      <li><button v-on:click="addToCart(prod)">加入购物车</button></li>
+    </ul>
+  </div>
+
+  <script src="./lib/vue.global.js"></script>
+  <script>
+    // 模拟初始化十件商品
+    const _recommends = new Array(10).fill(null).map((_, index) => {
+      return {
+        id: index + 1,
+        title: '商品标题' + (index + 1),
+        price: Math.floor(Math.random() * 99) + 9.9,
+      }
+    })
+  </script>
+  <script>
+    // 创建Vue应用实例
+    const app = Vue.createApp({
+      // 数据
+      data() {
+        return {
+          // 推荐商品
+          recommends: _recommends,
+          // 购物车
+          cart: [],
+        }
+      },
+      // 方法
+      methods: {
+        // 加入购物车
+        addToCart(goods) {
+          // 判断在购物车中是否有当前选购商品
+          // 有则叠加数量，没有则添加到数组
+          const has = this.cart.find(curr => curr.id === goods.id)
+          if (has) {
+            has.amount += 1
+          } else {
+            this.cart.push({
+              ...goods,
+              amount: 1, // 数量
+            })
+          }
+        },
+        // 从购物车中移除
+        removeFromCart(id) {
+          this.cart = this.cart.filter(curr => curr.id !== id)
+        },
+      },
+    })
+    // 挂载
+    app.mount('#app')
+  </script>
+</body>
+</html>

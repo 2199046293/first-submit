@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <div>message: {{ message }}</div>
+    <input type="text" v-model="message">
+  </div>
+
+  <script src="./lib/vue.global.js"></script>
+  <script>
+    Vue.createApp({
+      data() {
+        return {
+          message: 'Hello Vue3.x',
+        }
+      },
+    }).mount('#app')
+  </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <div>成绩: {{ score }}</div>
+    <span v-if="score >= 90">A</span>
+    <span v-else-if="score >= 80">B</span>
+    <span v-else-if="score >= 70">C</span>
+    <span v-else-if="score >= 60">D</span>
+    <span v-else>E</span>
+
+    <button @click="modify">修改成绩</button>
+  </div>
+
+  <hr>
+
+  <div id="app2">
+    <button @click="toggle">切换元素的显示与隐藏</button>
+    <div v-if="visible">v-if: 显示隐藏的内容</div>
+    <div v-show="visible">v-show: 显示隐藏的内容</div>
+  </div>
+
+  <script src="./lib/vue.global.js"></script>
+  <script>
+    Vue.createApp({
+      data() {
+        return {
+          score: 95,
+        }
+      },
+      methods: {
+        modify() {
+          const rand = Math.floor(Math.random() * 100)
+          this.score = rand
+        }
+      }
+    }).mount('#app')
+  </script>
+
+  <script>
+    Vue.createApp({
+      data() {
+        return {
+          visible: true,
+        }
+      },
+      methods: {
+        toggle() {
+          this.visible = !this.visible
+        }
+      }
+    }).mount('#app2')
+  </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h2 title="鼠标移入的提示文本">标题: {{ 3 + 2 - 5 }}</h2>
+    <h2 v-bind:title="message">标题: {{ message }}</h2>
+    <h2 title="{{message}}">这是测试标题，不能显示，title表示鼠标移入时会显示信息</h2>
+    <!-- 这是一个简写形式，等同于v-bind:title="message" -->
+    <h2 :title="message">标题222: {{ message }}</h2>
+  </div>
+
+  <script src="./lib/vue.global.js"></script>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          message: 'Hello Vue3.x',
+        }
+      }
+    })
+    app.mount('#app')
+  </script>
+</body>
+</html>

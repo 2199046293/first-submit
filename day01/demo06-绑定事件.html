@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    计数器: {{ count }}
+    <button v-on:click="count += 1">计数加</button>
+    <button @click="count -= 1">计数减</button>
+    <hr>
+    <button @click="add">加数量</button>
+    <button @click="minus($event, 3)">减数量</button>
+    <button @click="minus($event, 10)">减数量</button>
+  </div>
+
+  <script src="./lib/vue.global.js"></script>
+  <script>
+    Vue.createApp({
+      data() {
+        return {
+          count: 0,
+        }
+      },
+      methods: {
+        // 在 methods 中定义的方法中使用到的this
+        // 都指向的是当前组件实例自身。
+        // 注意，不要写成箭头函数的结构
+        // add: () => {
+        //   console.log('this:', this)
+        // },
+        add(event) {
+          console.log('event:', event)
+          this.count += 5
+        },
+        minus(event, num = 1) {
+          console.log('event:', event)
+          this.count -= num
+        }
+      },
+    }).mount('#app')
+  </script>
+</body>
+</html>

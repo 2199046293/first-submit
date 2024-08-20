@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+</style>
+<body>
+    <div id="app">
+        <h1>我的待办事项</h1>
+        <input v-model="newTodo" placeholder="输入新的待办事项" />
+        <button @click="addTodo">添加</button>
+        <ul>
+          <li v-for="(todo, index) in todos" :key="index">
+            <input type="checkbox" :checked="todo.done" @change="toggleTodo(index)">
+            <span :class="{ done: todo.done }">{{ todo.text }}</span>
+            <button @click="removeTodo(index)" style="background-color:red;color:white;border:none;padding:5px 10px;border-radius:5px;margin-left: 100px;">删除</button>
+          </li>
+        </ul>
+      </div>
+    <script src="../day01/lib/vue.global.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                  newTodo:'',
+                  todos:[]
+                }
+            },
+            methods: {
+                addTodo(){
+                    this.todos.push({text: this.newTodo, done: false})
+                    this.newTodo = ''
+                },
+                removeTodo(index) {
+                this.todos.splice(index, 1);
+             },
+             toggleTodo(index) {
+                this.todos[index].done = !this.todos[index].done;
+                }
+            }
+        }).mount('#app')
+        
+    </script>
+</body>
+</html>
